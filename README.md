@@ -36,6 +36,23 @@ result = client.bridges_get result["id"]
 ```
 Check http://www.rubydoc.info/github/t-k/asterisk-ari-ruby/master/ARI/Client for other APIs.
 
+Error handling
+--
+```ruby
+begin
+  result = client.asterisk_set_global_var
+rescue ARI::ServerError => e # handle 5xx request
+  puts e.response_body
+  puts e.error_info
+rescue ARI::APIError => e # handle 4xx request
+  puts e.response_body
+  # => {"message":"Variable name is required"}
+  puts e.error_info
+  # {:http_status=>400, :body=>"{\"message\":\"Variable name is required\"}", :data=>{"message"=>"Variable name is required"}}
+rescue
+end
+```
+
 ## TODO
 
 * add support for WebSocket APIs [(Events REST API)](https://wiki.asterisk.org/wiki/display/AST/Asterisk+12+Events+REST+API)
