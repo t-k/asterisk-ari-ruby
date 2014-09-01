@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["tatsuo@kaniwa.biz"]
   spec.summary       = %q{ Ruby client library for the Asterisk REST Interface (ARI) }
   spec.description   = %q{ Ruby client library for the Asterisk REST Interface (ARI) }
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/t-k/asterisk-ari-ruby"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
