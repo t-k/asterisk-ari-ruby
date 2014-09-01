@@ -1,5 +1,8 @@
 # ARI
 
+[![Gem Version](https://badge.fury.io/rb/asterisk-ari.svg)](http://badge.fury.io/rb/asterisk-ari)
+[![Build Status](https://travis-ci.org/t-k/asterisk-ari-ruby.png)](https://travis-ci.org/t-k/asterisk-ari-ruby)
+
 ARI is a Ruby client library for the [Asterisk REST Interface (ARI)](https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573)
 
 ## Installation
@@ -31,6 +34,7 @@ result = client.bridges_create({type: "mixing", bridgeId: "bridge_id", name: "br
 result = client.bridges_get result["id"]
 # => {"id"=>"bridge_id", "creator"=>"Stasis", "technology"=>"simple_bridge", "bridge_type"=>"mixing", "bridge_class"=>"stasis", "name"=>"bridge_name", "channels"=>[]}
 ```
+Check http://www.rubydoc.info/github/t-k/asterisk-ari-ruby/master/ARI/Client for other APIs.
 
 ## TODO
 
