@@ -923,17 +923,30 @@ module ARI
     #   get "events"
     # end
 
-    # # POST
-    # # /events/user/{eventName}
-    # # void
-    # # Generate a user event.
-    # #
+    # POST
+    # /events/user/:eventName
+    # void
+    # Generate a user event.
+    #
     # @see https://wiki.asterisk.org/wiki/display/AST/Asterisk+12+Events+REST+API#Asterisk12EventsRESTAPI-userEvent
-    # #
-    # # @param [String] event_name event_name
-    # def events_user_event(event_name)
-    #   post "events/user/#{event_name}"
-    # end
+    #
+    # @param [String] event_name event_name
+    # @param [Hash] params
+    # @option param [String] application #required The name of the application that will receive this event
+    # @option param [String] source URI for event source (channel:{channelId}, bridge:{bridgeId}, endpoint:{tech}/{resource}, deviceState:{deviceName}. Allows comma separated values.
+    #
+    # Body parameter
+    #
+    # variables: containers - The "variables" key in the body object holds custom key/value pairs to add to the user event. Ex. { "variables": { "key": "value" } }
+    #
+    # Error Responses
+    #
+    # 404 - Application does not exist.
+    # 422 - Event source not found.
+    # 400 - Invalid even tsource URI or userevent data.
+    def events_user_event(event_name, params = {})
+      post "events/user/#{event_name}", params
+    end
 
     # Recordings REST API
 
