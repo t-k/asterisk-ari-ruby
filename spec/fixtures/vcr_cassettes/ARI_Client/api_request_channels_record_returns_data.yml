@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://asterisk:asterisk@127.0.0.1:8088/ari/channels/1409624128.10/record
+    body:
+      encoding: US-ASCII
+      string: name=%2Ftmp%2Frecord&format=sln192&maxDurationSeconds=10&method=post
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - Asterisk/12.5.0
+      Date:
+      - Tue, 02 Sep 2014 02:34:50 GMT
+      Connection:
+      - close
+      Cache-Control:
+      - no-cache, no-store
+      Location:
+      - "/recordings/live/%2Ftmp%2Frecord"
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '94'
+    body:
+      encoding: UTF-8
+      string: '{"name":"/tmp/record","format":"sln192","state":"queued","target_uri":"channel:1409624128.10"}'
+    http_version:
+  recorded_at: Tue, 02 Sep 2014 02:34:50 GMT
+recorded_with: VCR 2.9.2

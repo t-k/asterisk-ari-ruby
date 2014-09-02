@@ -86,6 +86,45 @@ describe ARI::Client do
       end
     end
 
+    describe "#channels_get" do
+      it "returns data" do
+        id = "1409619856.0"
+        result = @client.channels_get(id)
+        result["id"].should == id
+      end
+    end
+
+    describe "#channels_record" do
+      it "returns data" do
+        id = "1409624128.10"
+        name = "/tmp/record"
+        format = "sln192"
+        result = @client.channels_record(id, {:name => name, :format => format, :maxDurationSeconds => 10})
+        result["name"].should == name
+        result["format"].should == format
+      end
+    end
+
+    describe "#channels_set_channel_var" do
+      it "returns data" do
+        id = "1409624128.10"
+        key = "FOO"
+        value = "BAR"
+        result = @client.channels_set_channel_var(id, {:variable => key, :value => value})
+        result.should == ""
+        result = @client.channels_get_channel_var(id, {:variable => key})
+        result["value"].should == value
+      end
+    end
+
+    describe "#channels_hangup" do
+      it "returns data" do
+        id = "1409619856.0"
+        result = @client.channels_hangup(id)
+        result.should == ""
+      end
+    end
+
     describe "#endpoints_list" do
       it "returns data" do
         result = @client.endpoints_list
@@ -107,10 +146,61 @@ describe ARI::Client do
       end
     end
 
+    describe "#events_user_event" do
+      it "returns data" do
+        result = @client.events_user_event("ApplicationReplaced", {application: "hello-world"})
+        result.should == ""
+      end
+    end
+
     describe "#recordings_list_stored" do
       it "returns data" do
         result = @client.recordings_list_stored
         result.is_a?(Array).should == true
+      end
+    end
+
+    describe "#recordings_get_stored" do
+      it "returns data" do
+        name = "/tmp/record"
+        result = @client.recordings_get_stored(name)
+        result[0]["name"].should == "tmp/record"
+      end
+    end
+
+    describe "#recordings_get_live" do
+      it "returns data" do
+        name = "record2"
+        result = @client.recordings_get_live(name)
+        result["name"].should == name
+      end
+    end
+
+    describe "#recordings_pause" do
+      it "returns data" do
+        name = "record2"
+        result = @client.recordings_pause(name)
+        result.should == ""
+        result = @client.recordings_unpause(name)
+        result.should == ""
+      end
+    end
+
+    describe "#recordings_mute" do
+      it "returns data" do
+        name = "record2"
+        result = @client.recordings_mute(name)
+        result.should == ""
+        result = @client.recordings_unmute(name)
+        result.should == ""
+      end
+    end
+
+    describe "#recordings_cancel" do
+      it "returns data" do
+        name = "record2"
+        result = @client.recordings_cancel(name)
+        result.should == ""
       end
     end
 
@@ -143,6 +233,25 @@ describe ARI::Client do
       it "returns data" do
         result = @client.applications_list
         result.is_a?(Array).should == true
+      end
+    end
+
+    describe "#applications_get" do
+      it "returns data" do
+        name = "hello-world"
+        result = @client.applications_get name
+        result["name"].should == name
+      end
+    end
+
+    describe "#applications_subscribe" do
+      it "returns data" do
+        name = "hello-world"
+        source = "channel:1409624128.10"
+        result = @client.applications_subscribe(name, {:eventSource => source})
+        result["name"].should == name
+        result = @client.applications_unsubscribe(name, {:eventSource => source})
+        result["name"].should == name
       end
     end
 

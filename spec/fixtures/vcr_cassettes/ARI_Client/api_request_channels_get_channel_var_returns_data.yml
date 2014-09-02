@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://asterisk:asterisk@127.0.0.1:8088/ari/channels/1409620106.2/variable
+    body:
+      encoding: US-ASCII
+      string: variable=FOO&value=BAR&method=post
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 409
+      message: Conflict
+    headers:
+      Server:
+      - Asterisk/12.5.0
+      Date:
+      - Tue, 02 Sep 2014 01:15:09 GMT
+      Connection:
+      - close
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '47'
+    body:
+      encoding: UTF-8
+      string: '{"message":"Channel not in Stasis application"}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 01:15:09 GMT
+- request:
+    method: post
+    uri: http://asterisk:asterisk@127.0.0.1:8088/ari/channels/1409620562.4/variable
+    body:
+      encoding: US-ASCII
+      string: variable=FOO&value=BAR&method=post
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 409
+      message: Conflict
+    headers:
+      Server:
+      - Asterisk/12.5.0
+      Date:
+      - Tue, 02 Sep 2014 01:16:28 GMT
+      Connection:
+      - close
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '47'
+    body:
+      encoding: UTF-8
+      string: '{"message":"Channel not in Stasis application"}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 01:16:28 GMT
+recorded_with: VCR 2.9.2
