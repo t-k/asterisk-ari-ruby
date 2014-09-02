@@ -26,7 +26,18 @@ describe ARI::Client do
     @client.password.should == SPEC_CONF["password"]
   end
 
+
   context "api request", :vcr do
+    context "errors" do
+      describe "ARI::APIError" do
+        it "raise error" do
+          lambda {
+            result = @client.asterisk_get_global_var
+          }.should raise_error(ARI::APIError)
+        end
+      end
+    end
+
     describe "#asterisk_get_info" do
       it "returns data" do
         result = @client.asterisk_get_info
